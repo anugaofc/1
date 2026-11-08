@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | CyberVault</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function() {
+      const head = document.head;
+      for (let i = 1; i <= 1000; i++) {
+        const meta = document.createElement('meta');
+        meta.name = 'cybervault-login-seo-' + i;
+        meta.content = 'Secure login to CyberVault cyber lab by Anuga Senithu. Access ethical hacking tools, CTF, and OWASP simulators.';
+        head.appendChild(meta);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="sticky-header">
+    <nav class="neon-navbar">
+      <h1 style="color: var(--neon-blue); margin: 0;"><a href="index.html" style="color: inherit; text-decoration: none;">CyberVault</a></h1>
+    </nav>
+  </header>
+
+  <main style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
+    <div class="dashboard-panel" style="width: 100%; max-width: 400px;">
+      <h2 style="text-align: center; color: var(--neon-green);">System Access</h2>
+      <form id="loginForm">
+        <div class="floating-label-group">
+          <input type="email" id="loginEmail" class="floating-input terminal-input" placeholder=" " required>
+          <label class="floating-label">Email Address</label>
+        </div>
+        <div class="floating-label-group">
+          <input type="password" id="loginPassword" class="floating-input terminal-input" placeholder=" " required>
+          <label class="floating-label">Password</label>
+        </div>
+        <button type="submit" class="neon-btn ripple-btn" style="width: 100%; margin-bottom: 1rem;">Authenticate</button>
+      </form>
+      
+      <div style="text-align: center; margin: 1rem 0; color: #666;">OR CONTINUE WITH</div>
+      
+      <button id="googleLogin" class="gradient-btn" style="width: 100%; margin-bottom: 0.5rem;">Google</button>
+      <button id="microsoftLogin" class="gradient-btn" style="width: 100%; margin-bottom: 0.5rem; background: linear-gradient(45deg, #00a4ef, #7fba00);">Microsoft</button>
+      <button id="appleLogin" class="gradient-btn" style="width: 100%; background: linear-gradient(45deg, #333, #000);">Apple</button>
+      
+      <p style="text-align: center; margin-top: 1rem;">
+        No account? <a href="signup.html" style="color: var(--neon-pink);">Initialize Signup</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="cyber-footer">
+    <p>Developer: <span>Anuga Senithu</span></p>
+  </footer>
+
+  <script type="module">
+    import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, OAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+    const auth = getAuth(window.cyberVaultApp);
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = 'dashboard.html';
+      } catch (error) {
+        alert('Authentication Failed: ' + error.message);
+      }
+    });
+
+    document.getElementById('googleLogin').addEventListener('click', () => {
+      signInWithPopup(auth, new GoogleAuthProvider()).then(() => window.location.href = 'dashboard.html').catch(e => alert(e.message));
+    });
+
+    document.getElementById('microsoftLogin').addEventListener('click', () => {
+      const provider = new OAuthProvider('microsoft.com');
+      signInWithPopup(auth, provider).then(() => window.location.href = 'dashboard.html').catch(e => alert(e.message));
+    });
+
+    document.getElementById('appleLogin').addEventListener('click', () => {
+      const provider = new OAuthProvider('apple.com');
+      signInWithPopup(auth, provider).then(() => window.location.href = 'dashboard.html').catch(e => alert(e.message));
+    });
+  </script>
+</body>
+</html>
