@@ -5,125 +5,457 @@
 
 :root {
   --neon-blue: #00f3ff; --neon-pink: #ff00ff; --neon-green: #0aff00;
-  --bg-dark: #0a0a0f; --bg-panel: #12121a; --text-main: #e0e0e0;
+  --bg-dark: #050508; --bg-panel: #0f0f16; --text-main: #e0e0e0;
+  --glass-bg: rgba(255, 255, 255, 0.05); --glass-border: rgba(255, 255, 255, 0.1);
 }
 
-/* Base & Layout */
-body { margin: 0; font-family: 'Courier New', monospace; background: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
-/* 100. Responsive Cyber Layout */
-.responsive-cyber-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; padding: 1rem; }
-/* 92. 3D Dashboard */
-.dashboard-3d { perspective: 1000px; }
-.dashboard-panel { transform: rotateX(2deg); background: var(--bg-panel); border: 1px solid var(--neon-blue); box-shadow: 0 10px 30px rgba(0,243,255,0.1); border-radius: 8px; padding: 1.5rem; transition: transform 0.3s; }
-.dashboard-panel:hover { transform: rotateX(0deg) translateZ(20px); }
-/* 91. Cyber HUD */
-.cyber-hud { position: relative; border: 1px solid var(--neon-green); padding: 2rem; background: rgba(10,255,10,0.05); clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%); }
-/* 94. Terminal UI */
-.terminal-ui { background: #000; color: var(--neon-green); padding: 1rem; border-radius: 4px; font-family: 'Fira Code', monospace; border-left: 3px solid var(--neon-green); }
-/* 93. Holographic UI */
-.holographic-ui { background: linear-gradient(135deg, rgba(255,0,255,0.1), rgba(0,243,255,0.1)); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
-/* 95. AI Chat UI */
-.ai-chat-ui { display: flex; flex-direction: column; height: 400px; border: 1px solid var(--neon-blue); border-radius: 8px; overflow: hidden; }
-.chat-messages { flex: 1; padding: 1rem; overflow-y: auto; }
-.chat-input { display: flex; border-top: 1px solid var(--neon-blue); }
-.chat-input input { flex: 1; background: transparent; border: none; color: white; padding: 1rem; }
-/* 96. Cyber Radar */
-.cyber-radar { width: 200px; height: 200px; border-radius: 50%; border: 2px solid var(--neon-green); position: relative; background: radial-gradient(circle, rgba(10,255,10,0.2) 0%, transparent 70%); }
-.cyber-radar::after { content: ''; position: absolute; top: 50%; left: 50%; width: 50%; height: 2px; background: var(--neon-green); transform-origin: 0 0; animation: radar-spin 2s linear infinite; }
-@keyframes radar-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-/* 97. Circular Progress UI */
-.circular-progress { width: 100px; height: 100px; border-radius: 50%; background: conic-gradient(var(--neon-blue) 75%, transparent 0); display: flex; align-items: center; justify-content: center; }
-/* 98. Neon Data Visualization */
-.neon-chart { display: flex; align-items: flex-end; gap: 5px; height: 100px; }
-.neon-bar { width: 20px; background: var(--neon-pink); box-shadow: 0 0 10px var(--neon-pink); animation: pulse-bar 1s infinite alternate; }
-@keyframes pulse-bar { from { opacity: 0.6; } to { opacity: 1; } }
-/* 99. Interactive Tool Cards */
-.tool-card { background: var(--bg-panel); border: 1px solid #333; padding: 1.5rem; border-radius: 8px; transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden; }
-.tool-card:hover { border-color: var(--neon-blue); box-shadow: 0 0 20px rgba(0,243,255,0.3); transform: translateY(-5px); }
-.tool-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transition: 0.5s; }
-.tool-card:hover::before { left: 100%; }
+/* =========================================
+   1. BACKGROUND & VISUAL EFFECTS (1–15)
+   ========================================= */
+/* 1. Animated Gradient */
+.bg-animated-gradient { background: linear-gradient(-45deg, #0a0a0f, #1a0b2e, #0f1a2e, #0a0a0f); background-size: 400% 400%; animation: gradientShift 15s ease infinite; }
+@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-/* Navigation */
-/* Sticky Header */
-.sticky-header { position: sticky; top: 0; z-index: 1000; background: rgba(10,10,15,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--neon-blue); }
-/* 64. Neon Navbar */
-.neon-navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
-/* 65. Active Nav Glow */
-.nav-link { color: var(--text-main); text-decoration: none; padding: 0.5rem 1rem; transition: 0.3s; }
-.nav-link.active, .nav-link:hover { color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
-/* 69. Vertical Navigation */
-.vertical-nav { display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem; border-right: 1px solid #333; height: 100vh; }
-/* 70. Animated Underline */
-.animated-underline { position: relative; }
-.animated-underline::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background: var(--neon-pink); transition: width 0.3s; }
-.animated-underline:hover::after { width: 100%; }
-/* 74. Command Palette */
-.command-palette { position: fixed; top: 20%; left: 50%; transform: translateX(-50%); width: 500px; background: var(--bg-panel); border: 1px solid var(--neon-blue); border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); z-index: 2000; display: none; }
-.command-palette.active { display: block; }
-/* 75. Mobile Bottom Nav */
-.mobile-bottom-nav { display: none; position: fixed; bottom: 0; width: 100%; background: var(--bg-panel); border-top: 1px solid #333; justify-content: space-around; padding: 1rem; }
-@media (max-width: 768px) { .mobile-bottom-nav { display: flex; } .vertical-nav { display: none; } }
+/* 2. Neon Glow Background */
+.bg-neon-glow { background: radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.15) 0%, transparent 70%); }
 
-/* Buttons, Inputs & Components */
-/* 76. Neon Button */
+/* 3. Cyber Grid Background */
+.bg-cyber-grid { background-image: linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px); background-size: 40px 40px; }
+
+/* 4. Radial Glow */
+.bg-radial-glow { background: radial-gradient(circle, rgba(10, 255, 10, 0.2) 0%, transparent 80%); }
+
+/* 5. Dark Gradient */
+.bg-dark-gradient { background: linear-gradient(180deg, #0a0a0f 0%, #000000 100%); }
+
+/* 6. Aurora Background */
+.bg-aurora { background: linear-gradient(125deg, #000, #1a0b2e, #0f1a2e, #000); filter: hue-rotate(0deg); animation: aurora 10s linear infinite; }
+@keyframes aurora { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
+
+/* 7. Animated Mesh */
+.bg-animated-mesh { background: conic-gradient(from 0deg at 50% 50%, #0a0a0f, #1a0b2e, #0f1a2e, #0a0a0f); animation: spinMesh 20s linear infinite; }
+@keyframes spinMesh { to { transform: rotate(360deg); } }
+
+/* 8. Particle Background */
+.bg-particle { background-image: radial-gradient(rgba(0, 243, 255, 0.5) 1px, transparent 1px); background-size: 30px 30px; animation: particleMove 20s linear infinite; }
+@keyframes particleMove { from { background-position: 0 0; } to { background-position: 100px 100px; } }
+
+/* 9. Moving Gradient */
+.bg-moving-gradient { background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink), var(--neon-green)); background-size: 200% auto; animation: moveGradient 3s linear infinite; }
+@keyframes moveGradient { to { background-position: 200% center; } }
+
+/* 10. Scanline Overlay */
+.overlay-scanline { position: relative; }
+.overlay-scanline::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px); pointer-events: none; z-index: 10; }
+
+/* 11. Starfield */
+.bg-starfield { background: #000; box-shadow: 0 0 2px 1px rgba(255,255,255,0.8), 100px 200px 1px 1px rgba(255,255,255,0.6), 200px 50px 1px 1px rgba(255,255,255,0.7); animation: twinkle 5s infinite alternate; }
+@keyframes twinkle { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+/* 12. Digital Rain */
+.bg-digital-rain { background: linear-gradient(180deg, transparent 0%, rgba(10, 255, 10, 0.1) 50%, transparent 100%); background-size: 100% 200%; animation: rain 2s linear infinite; }
+@keyframes rain { 0% { background-position: 0 -100%; } 100% { background-position: 0 100%; } }
+
+/* 13. Matrix Background */
+.bg-matrix { background-color: #000; background-image: linear-gradient(0deg, transparent 24%, rgba(10, 255, 10, .3) 25%, rgba(10, 255, 10, .3) 26%, transparent 27%, transparent 74%, rgba(10, 255, 10, .3) 75%, rgba(10, 255, 10, .3) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(10, 255, 10, .3) 25%, rgba(10, 255, 10, .3) 26%, transparent 27%, transparent 74%, rgba(10, 255, 10, .3) 75%, rgba(10, 255, 10, .3) 76%, transparent 77%, transparent); background-size: 50px 50px; }
+
+/* 14. Noise Texture */
+.bg-noise { position: relative; }
+.bg-noise::after { content: ""; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"); pointer-events: none; }
+
+/* 15. Holographic Background */
+.bg-holographic { background: linear-gradient(135deg, rgba(255,0,255,0.1), rgba(0,243,255,0.1), rgba(10,255,10,0.1)); background-size: 200% 200%; animation: holoShift 5s ease infinite; }
+@keyframes holoShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+/* =========================================
+   2. GLASSMORPHISM & CARD EFFECTS (16–30)
+   ========================================= */
+/* 16. Glass Cards */
+.glass-card { background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 12px; }
+
+/* 17. 3D Glass Cards */
+.glass-card-3d { perspective: 1000px; }
+.glass-card-3d-inner { background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); transform: rotateX(5deg); transition: transform 0.4s; }
+.glass-card-3d-inner:hover { transform: rotateX(0deg) translateZ(20px); }
+
+/* 18. Neon Glass */
+.neon-glass { background: rgba(0, 243, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid var(--neon-blue); box-shadow: 0 0 15px rgba(0, 243, 255, 0.2); }
+
+/* 19. Frosted Glass */
+.frosted-glass { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255,255,255,0.15); }
+
+/* 20. Hologram Cards */
+.hologram-card { background: linear-gradient(135deg, rgba(255,0,255,0.05), rgba(0,243,255,0.05)); border: 1px solid rgba(255,255,255,0.2); position: relative; overflow: hidden; }
+.hologram-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent); transform: rotate(45deg); animation: holoShine 3s infinite; }
+@keyframes holoShine { 0% { transform: translateX(-100%) rotate(45deg); } 100% { transform: translateX(100%) rotate(45deg); } }
+
+/* 21. Glass Sidebar */
+.glass-sidebar { position: fixed; left: 0; top: 0; height: 100vh; width: 250px; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(15px); border-right: 1px solid var(--glass-border); z-index: 100; }
+
+/* 22. Glass Navbar */
+.glass-navbar { position: sticky; top: 0; z-index: 1000; background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border); }
+
+/* 23. Floating Glass */
+.floating-glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.3); animation: float 6s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* 24. Glass Borders */
+.glass-border { border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: inset 0 0 20px rgba(255,255,255,0.05); }
+
+/* 25. Glass Buttons */
+.glass-btn { background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; transition: 0.3s; }
+.glass-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* 26. Frosted Modals */
+.frosted-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 2000; }
+
+/* 27. Transparent Panels */
+.transparent-panel { background: rgba(15, 15, 22, 0.4); border: 1px solid rgba(255,255,255,0.05); }
+
+/* 28. Glass Tooltips */
+.glass-tooltip { position: relative; }
+.glass-tooltip::after { content: attr(data-tooltip); position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); border: 1px solid var(--neon-blue); color: white; padding: 5px 10px; border-radius: 4px; opacity: 0; pointer-events: none; transition: 0.3s; white-space: nowrap; }
+.glass-tooltip:hover::after { opacity: 1; }
+
+/* 29. Glass Notifications */
+.glass-toast { position: fixed; top: 20px; right: 20px; background: rgba(10, 255, 10, 0.1); backdrop-filter: blur(10px); border: 1px solid var(--neon-green); padding: 1rem; border-radius: 8px; color: var(--neon-green); transform: translateX(150%); transition: 0.4s; z-index: 3000; }
+.glass-toast.show { transform: translateX(0); }
+
+/* 30. Glass Search Box */
+.glass-search { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.8rem 1rem; border-radius: 20px; width: 100%; outline: none; transition: 0.3s; }
+.glass-search:focus { border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(0,243,255,0.2); }
+
+/* =========================================
+   3. NEON & CYBERPUNK EFFECTS (31–45)
+   ========================================= */
+/* 31. Neon Border */
+.neon-border { border: 1px solid var(--neon-blue); box-shadow: 0 0 5px var(--neon-blue), inset 0 0 5px var(--neon-blue); }
+
+/* 32. Neon Text */
+.neon-text { color: var(--neon-blue); text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue); }
+
+/* 33. Neon Buttons */
 .neon-btn { background: transparent; color: var(--neon-blue); border: 1px solid var(--neon-blue); padding: 0.8rem 1.5rem; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; box-shadow: 0 0 5px var(--neon-blue); }
 .neon-btn:hover { background: var(--neon-blue); color: #000; box-shadow: 0 0 20px var(--neon-blue); }
+
+/* 34. Neon Icons */
+.neon-icon { filter: drop-shadow(0 0 5px var(--neon-pink)); color: var(--neon-pink); }
+
+/* 35. Neon Shadows */
+.neon-shadow { box-shadow: 0 0 15px rgba(0, 243, 255, 0.5), 0 0 30px rgba(0, 243, 255, 0.3); }
+
+/* 36. RGB Split */
+.rgb-split { position: relative; }
+.rgb-split::before, .rgb-split::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.rgb-split::before { color: #ff0000; z-index: -1; animation: rgbSplit1 2s infinite; }
+.rgb-split::after { color: #00ffff; z-index: -2; animation: rgbSplit2 2s infinite; }
+@keyframes rgbSplit1 { 0%, 100% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } }
+@keyframes rgbSplit2 { 0%, 100% { transform: translate(0); } 20% { transform: translate(2px, -2px); } }
+
+/* 37. Glitch Text */
+.glitch-text { position: relative; color: white; font-weight: bold; }
+.glitch-text::before, .glitch-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-dark); }
+.glitch-text::before { left: 2px; text-shadow: -1px 0 red; clip-path: inset(0 0 0 0); animation: glitch-anim-1 2s infinite linear alternate-reverse; }
+.glitch-text::after { left: -2px; text-shadow: -1px 0 blue; clip-path: inset(0 0 0 0); animation: glitch-anim-2 3s infinite linear alternate-reverse; }
+@keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 20% { clip-path: inset(60% 0 10% 0); } 100% { clip-path: inset(10% 0 50% 0); } }
+@keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 20% { clip-path: inset(80% 0 5% 0); } 100% { clip-path: inset(30% 0 20% 0); } }
+
+/* 38. Glitch Hover */
+.glitch-hover:hover { animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite; color: var(--neon-pink); }
+@keyframes glitch-skew { 0% { transform: skew(0deg); } 20% { transform: skew(-2deg); } 40% { transform: skew(2deg); } 100% { transform: skew(0deg); } }
+
+/* 39. Scanline Cards */
+.scanline-card { position: relative; overflow: hidden; }
+.scanline-card::after { content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 20%; background: linear-gradient(180deg, transparent, rgba(0, 243, 255, 0.2), transparent); animation: scanline 3s linear infinite; }
+@keyframes scanline { 0% { top: -20%; } 100% { top: 120%; } }
+
+/* 40. CRT Effect */
+.crt-effect { position: relative; }
+.crt-effect::before { content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); background-size: 100% 2px, 3px 100%; pointer-events: none; z-index: 10; }
+
+/* 41. Cyberpunk Corners */
+.cyberpunk-corners { clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%); border: 1px solid var(--neon-green); }
+
+/* 42. Animated Border */
+.animated-border { position: relative; background: var(--bg-panel); z-index: 1; border-radius: 8px; }
+.animated-border::before { content: ''; position: absolute; inset: -2px; background: conic-gradient(from 0deg, var(--neon-blue), var(--neon-pink), var(--neon-green), var(--neon-blue)); z-index: -1; border-radius: inherit; animation: rotateBorder 4s linear infinite; }
+@keyframes rotateBorder { to { transform: rotate(360deg); } }
+
+/* 43. Laser Border */
+.laser-border { position: relative; border: 1px solid transparent; border-radius: 8px; }
+.laser-border::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--neon-pink); border-radius: 8px; box-shadow: 0 0 10px var(--neon-pink); animation: laserPulse 1.5s infinite alternate; }
+@keyframes laserPulse { from { opacity: 0.3; } to { opacity: 1; } }
+
+/* 44. Holographic Shine */
+.holo-shine { position: relative; overflow: hidden; border-radius: 8px; }
+.holo-shine::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transform: skewX(-25deg); animation: shine 3s infinite; }
+@keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
+
+/* 45. Electric Pulse */
+.electric-pulse { animation: electric 0.1s infinite; border-radius: 4px; }
+@keyframes electric { 0% { box-shadow: 0 0 5px var(--neon-blue); } 50% { box-shadow: 0 0 15px var(--neon-blue), 0 0 25px var(--neon-pink); } 100% { box-shadow: 0 0 5px var(--neon-blue); } }
+
+/* =========================================
+   4. ANIMATIONS & MOTION (46–60)
+   ========================================= */
+/* 46. Fade In */
+.anim-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* 47. Slide Up */
+.anim-slide-up { animation: slideUp 0.6s ease-out forwards; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+/* 48. Slide In */
+.anim-slide-in { animation: slideIn 0.6s ease-out forwards; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+
+/* 49. Scale In */
+.anim-scale-in { animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+
+/* 50. Bounce Animation */
+.anim-bounce { animation: bounce 2s infinite; }
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
+
+/* 51. Floating Animation */
+.anim-float { animation: float 6s ease-in-out infinite; }
+
+/* 52. 3D Tilt Hover */
+.tilt-hover { transition: transform 0.3s; transform-style: preserve-3d; }
+.tilt-hover:hover { transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.02); }
+
+/* 53. Pulse Glow */
+.pulse-glow { animation: pulseGlow 2s infinite; border-radius: 50%; }
+@keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(0, 243, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0); } }
+
+/* 54. Shimmer Loading */
+.shimmer { background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* 55. Gradient Text */
+.gradient-text { background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+/* 56. Typewriter Text */
+.typewriter { overflow: hidden; border-right: 2px solid var(--neon-green); white-space: nowrap; margin: 0 auto; animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite; }
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: var(--neon-green); } }
+
+/* 57. Blinking Cursor */
+.blinking-cursor::after { content: '█'; animation: blink 1s step-end infinite; color: var(--neon-green); margin-left: 2px; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* 58. Loading Spinner */
+.spinner { width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); border-left-color: var(--neon-blue); border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* 59. Skeleton Loading */
+.skeleton { background: #1a1a24; border-radius: 4px; position: relative; overflow: hidden; }
+.skeleton::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); transform: translateX(-100%); animation: shimmer 1.5s infinite; }
+
+/* 60. Animated Progress */
+.progress-bar { height: 8px; background: #1a1a24; border-radius: 4px; overflow: hidden; }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--neon-blue), var(--neon-green)); width: 0%; animation: fillProgress 2s ease-out forwards; }
+@keyframes fillProgress { to { width: var(--progress, 75%); } }
+
+/* =========================================
+   5. NAVIGATION & LAYOUT (61–75)
+   ========================================= */
+/* 61. Floating Sidebar */
+.floating-sidebar { position: fixed; left: 20px; top: 50%; transform: translateY(-50%); width: 60px; background: var(--bg-panel); border: 1px solid var(--glass-border); border-radius: 30px; padding: 1rem 0; display: flex; flex-direction: column; align-items: center; gap: 1rem; z-index: 100; }
+
+/* 62. Collapsible Sidebar */
+.collapsible-sidebar { width: 250px; transition: width 0.3s ease; overflow: hidden; background: var(--bg-panel); border-right: 1px solid var(--glass-border); }
+.collapsible-sidebar.collapsed { width: 60px; }
+
+/* 63. Glass Navbar (See #22) */
+.glass-navbar { /* Defined above */ }
+
+/* 64. Neon Navbar */
+.neon-navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: rgba(10,10,15,0.9); border-bottom: 1px solid var(--neon-blue); box-shadow: 0 2px 10px rgba(0,243,255,0.1); }
+
+/* 65. Active Nav Glow */
+.nav-link { color: var(--text-main); text-decoration: none; padding: 0.5rem 1rem; transition: 0.3s; position: relative; }
+.nav-link.active, .nav-link:hover { color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
+
+/* 66. Breadcrumb UI */
+.breadcrumb { display: flex; list-style: none; padding: 0; margin: 0; font-size: 0.9rem; }
+.breadcrumb li + li::before { content: '>'; color: var(--neon-pink); margin: 0 0.5rem; }
+.breadcrumb a { color: #888; text-decoration: none; }
+.breadcrumb a:hover { color: var(--neon-blue); }
+
+/* 67. Tab Navigation */
+.tab-nav { display: flex; border-bottom: 1px solid #333; }
+.tab-btn { background: none; border: none; color: #888; padding: 1rem 1.5rem; cursor: pointer; border-bottom: 2px solid transparent; transition: 0.3s; }
+.tab-btn.active { color: var(--neon-blue); border-bottom-color: var(--neon-blue); }
+
+/* 68. Pill Navigation */
+.pill-nav { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 0.3rem; border-radius: 20px; width: fit-content; }
+.pill-btn { background: transparent; border: none; color: #888; padding: 0.5rem 1rem; border-radius: 16px; cursor: pointer; transition: 0.3s; }
+.pill-btn.active { background: var(--neon-blue); color: #000; font-weight: bold; }
+
+/* 69. Vertical Navigation */
+.vertical-nav { display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem; border-right: 1px solid #333; height: 100vh; }
+
+/* 70. Animated Underline */
+.animated-underline { position: relative; display: inline-block; }
+.animated-underline::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0; background: var(--neon-pink); transition: width 0.3s; }
+.animated-underline:hover::after { width: 100%; }
+
+/* 71. Mega Menu */
+.mega-menu { position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg-panel); border-top: 1px solid var(--neon-blue); padding: 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; opacity: 0; pointer-events: none; transition: 0.3s; }
+.has-mega-menu:hover .mega-menu { opacity: 1; pointer-events: all; }
+
+/* 72. Slide Drawer */
+.slide-drawer { position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background: var(--bg-panel); border-left: 1px solid var(--neon-blue); transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 2000; padding: 2rem; }
+.slide-drawer.open { right: 0; }
+
+/* 73. Sticky Header */
+.sticky-header { position: sticky; top: 0; z-index: 1000; background: rgba(10,10,15,0.95); backdrop-filter: blur(10px); }
+
+/* 74. Command Palette */
+.command-palette { position: fixed; top: 20%; left: 50%; transform: translateX(-50%); width: 500px; max-width: 90vw; background: var(--bg-panel); border: 1px solid var(--neon-blue); border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); z-index: 3000; display: none; padding: 1rem; }
+.command-palette.active { display: block; animation: scaleIn 0.2s ease-out; }
+
+/* 75. Mobile Bottom Nav */
+.mobile-bottom-nav { display: none; position: fixed; bottom: 0; width: 100%; background: var(--bg-panel); border-top: 1px solid #333; justify-content: space-around; padding: 0.8rem; z-index: 1000; }
+@media (max-width: 768px) { .mobile-bottom-nav { display: flex; } }
+
+/* =========================================
+   6. BUTTONS, INPUTS & COMPONENTS (76–90)
+   ========================================= */
+/* 76. Neon Button (See #33) */
+.neon-btn { /* Defined above */ }
+
 /* 77. Gradient Button */
-.gradient-btn { background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink)); border: none; color: white; padding: 0.8rem 1.5rem; cursor: pointer; border-radius: 4px; font-weight: bold; }
+.gradient-btn { background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink)); border: none; color: white; padding: 0.8rem 1.5rem; cursor: pointer; border-radius: 4px; font-weight: bold; transition: 0.3s; }
+.gradient-btn:hover { filter: brightness(1.2); box-shadow: 0 0 15px rgba(255,0,255,0.4); }
+
 /* 78. 3D Button */
-.btn-3d { background: var(--neon-green); color: #000; border: none; padding: 0.8rem 1.5rem; cursor: pointer; box-shadow: 0 5px 0 #008f00; transition: 0.1s; font-weight: bold; }
+.btn-3d { background: var(--neon-green); color: #000; border: none; padding: 0.8rem 1.5rem; cursor: pointer; box-shadow: 0 5px 0 #008f00; transition: 0.1s; font-weight: bold; border-radius: 4px; }
 .btn-3d:active { transform: translateY(5px); box-shadow: 0 0 0 #008f00; }
+
 /* 79. Magnetic Hover */
-.magnetic-hover { transition: transform 0.2s; display: inline-block; }
+.magnetic-hover { transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); display: inline-block; }
 .magnetic-hover:hover { transform: scale(1.05); }
+
 /* 80. Ripple Effect */
 .ripple-btn { position: relative; overflow: hidden; }
 .ripple-btn::after { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(255,255,255,0.3); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s; }
 .ripple-btn:active::after { width: 300px; height: 300px; }
-/* 84. Floating Labels */
-.floating-label-group { position: relative; margin-bottom: 1.5rem; }
-.floating-input { width: 100%; padding: 1rem; background: transparent; border: 1px solid #444; color: white; border-radius: 4px; outline: none; }
-.floating-label { position: absolute; left: 1rem; top: 1rem; color: #888; transition: 0.3s; pointer-events: none; }
-.floating-input:focus ~ .floating-label, .floating-input:not(:placeholder-shown) ~ .floating-label { top: -0.5rem; left: 0.5rem; font-size: 0.8rem; color: var(--neon-blue); background: var(--bg-dark); padding: 0 0.5rem; }
-/* 85. Terminal Input */
-.terminal-input { background: #000; border: 1px solid var(--neon-green); color: var(--neon-green); padding: 0.8rem; font-family: monospace; width: 100%; }
-.terminal-input:focus { outline: none; box-shadow: 0 0 10px rgba(10,255,10,0.3); }
-/* 86. Search Input Glow */
-.search-glow { background: var(--bg-panel); border: 1px solid #333; color: white; padding: 0.8rem; border-radius: 20px; width: 100%; transition: 0.3s; }
-.search-glow:focus { border-color: var(--neon-pink); box-shadow: 0 0 15px rgba(255,0,255,0.3); outline: none; }
+
 /* 81. Animated Checkbox */
 .cyber-checkbox { display: none; }
 .cyber-checkbox + label { position: relative; padding-left: 2rem; cursor: pointer; color: var(--text-main); }
-.cyber-checkbox + label::before { content: ''; position: absolute; left: 0; top: 0; width: 18px; height: 18px; border: 1px solid var(--neon-blue); transition: 0.3s; }
+.cyber-checkbox + label::before { content: ''; position: absolute; left: 0; top: 2px; width: 18px; height: 18px; border: 1px solid var(--neon-blue); transition: 0.3s; }
 .cyber-checkbox:checked + label::before { background: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue); }
+.cyber-checkbox:checked + label::after { content: '✓'; position: absolute; left: 4px; top: 2px; color: #000; font-weight: bold; font-size: 14px; }
+
 /* 82. Toggle Switch */
-.toggle-switch { position: relative; width: 50px; height: 26px; }
+.toggle-switch { position: relative; width: 50px; height: 26px; display: inline-block; }
 .toggle-switch input { opacity: 0; width: 0; height: 0; }
 .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; }
 .toggle-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
-input:checked + .toggle-slider { background-color: var(--neon-green); }
-input:checked + .toggle-slider:before { transform: translateX(24px); }
+.toggle-switch input:checked + .toggle-slider { background-color: var(--neon-green); box-shadow: 0 0 10px var(--neon-green); }
+.toggle-switch input:checked + .toggle-slider:before { transform: translateX(24px); }
+
 /* 83. Radio Buttons */
-.cyber-radio { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
-.cyber-radio input { accent-color: var(--neon-pink); }
+.cyber-radio { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--text-main); }
+.cyber-radio input { accent-color: var(--neon-pink); width: 18px; height: 18px; cursor: pointer; }
+
+/* 84. Floating Labels */
+.floating-label-group { position: relative; margin-bottom: 1.5rem; }
+.floating-input { width: 100%; padding: 1rem; background: transparent; border: 1px solid #444; color: white; border-radius: 4px; outline: none; transition: 0.3s; }
+.floating-label { position: absolute; left: 1rem; top: 1rem; color: #888; transition: 0.3s; pointer-events: none; }
+.floating-input:focus ~ .floating-label, .floating-input:not(:placeholder-shown) ~ .floating-label { top: -0.5rem; left: 0.5rem; font-size: 0.8rem; color: var(--neon-blue); background: var(--bg-dark); padding: 0 0.5rem; }
+.floating-input:focus { border-color: var(--neon-blue); box-shadow: 0 0 10px rgba(0,243,255,0.2); }
+
+/* 85. Terminal Input */
+.terminal-input { background: #000; border: 1px solid var(--neon-green); color: var(--neon-green); padding: 0.8rem; font-family: 'Courier New', monospace; width: 100%; border-radius: 4px; }
+.terminal-input:focus { outline: none; box-shadow: 0 0 10px rgba(10,255,10,0.3); }
+
+/* 86. Search Input Glow */
+.search-glow { background: var(--bg-panel); border: 1px solid #333; color: white; padding: 0.8rem; border-radius: 20px; width: 100%; transition: 0.3s; }
+.search-glow:focus { border-color: var(--neon-pink); box-shadow: 0 0 15px rgba(255,0,255,0.3); outline: none; }
+
 /* 87. Custom Scrollbar */
-::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-dark); }
 ::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--neon-pink); }
-/* 88. Tooltip UI */
-.tooltip { position: relative; display: inline-block; }
-.tooltip .tooltiptext { visibility: hidden; width: 120px; background-color: #000; color: #fff; text-align: center; border-radius: 6px; padding: 5px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -60px; opacity: 0; transition: opacity 0.3s; border: 1px solid var(--neon-blue); }
-.tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
-/* 89. Notification Toast */
-.toast { position: fixed; top: 20px; right: 20px; background: var(--bg-panel); border-left: 4px solid var(--neon-green); padding: 1rem; border-radius: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); transform: translateX(150%); transition: transform 0.3s; z-index: 3000; }
-.toast.show { transform: translateX(0); }
-/* 90. Modal Animation */
-.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2500; }
-.modal-overlay.active { opacity: 1; pointer-events: all; }
-.modal-content { background: var(--bg-panel); padding: 2rem; border: 1px solid var(--neon-blue); border-radius: 8px; transform: scale(0.8); transition: 0.3s; }
-.modal-overlay.active .modal-content { transform: scale(1); }
 
-/* Footer */
-.cyber-footer { text-align: center; padding: 2rem; border-top: 1px solid #333; margin-top: 3rem; color: #666; font-size: 0.9rem; }
-.cyber-footer span { color: var(--neon-blue); }
+/* 88. Tooltip UI */
+.tooltip { position: relative; display: inline-block; cursor: help; }
+.tooltip .tooltiptext { visibility: hidden; width: 150px; background-color: #000; color: #fff; text-align: center; border-radius: 6px; padding: 8px; position: absolute; z-index: 10; bottom: 125%; left: 50%; margin-left: -75px; opacity: 0; transition: opacity 0.3s; border: 1px solid var(--neon-blue); font-size: 0.8rem; }
+.tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+
+/* 89. Notification Toast */
+.notification-toast { position: fixed; top: 20px; right: 20px; background: var(--bg-panel); border-left: 4px solid var(--neon-green); padding: 1rem; border-radius: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); transform: translateX(150%); transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); z-index: 3000; color: white; }
+.notification-toast.show { transform: translateX(0); }
+
+/* 90. Modal Animation */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2500; }
+.modal-overlay.active { opacity: 1; pointer-events: all; }
+.modal-content { background: var(--bg-panel); padding: 2rem; border: 1px solid var(--neon-blue); border-radius: 8px; transform: scale(0.8) translateY(20px); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
+
+/* =========================================
+   7. ADVANCED PREMIUM UI (91–100)
+   ========================================= */
+/* 91. Cyber HUD */
+.cyber-hud { position: relative; border: 1px solid var(--neon-green); padding: 2rem; background: rgba(10,255,10,0.03); clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%); }
+.cyber-hud::before { content: 'SYSTEM ONLINE'; position: absolute; top: -10px; left: 20px; background: var(--bg-dark); padding: 0 10px; color: var(--neon-green); font-size: 0.8rem; letter-spacing: 2px; }
+
+/* 92. 3D Dashboard */
+.dashboard-3d { perspective: 1200px; padding: 1rem; }
+.dashboard-panel { background: var(--bg-panel); border: 1px solid rgba(0,243,255,0.3); box-shadow: 0 10px 30px rgba(0,243,255,0.1); border-radius: 8px; padding: 1.5rem; transform: rotateX(2deg); transition: transform 0.4s, box-shadow 0.4s; }
+.dashboard-panel:hover { transform: rotateX(0deg) translateZ(30px); box-shadow: 0 20px 40px rgba(0,243,255,0.2); }
+
+/* 93. Holographic UI */
+.holographic-ui { background: linear-gradient(135deg, rgba(255,0,255,0.1), rgba(0,243,255,0.1)); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); position: relative; overflow: hidden; border-radius: 8px; }
+.holographic-ui::after { content: ''; position: absolute; inset: 0; background: linear-gradient(125deg, transparent 0%, rgba(255,255,255,0.1) 40%, transparent 60%); animation: holoShine 4s infinite; }
+
+/* 94. Terminal UI */
+.terminal-ui { background: #000; color: var(--neon-green); padding: 1.5rem; border-radius: 4px; font-family: 'Fira Code', 'Courier New', monospace; border-left: 3px solid var(--neon-green); box-shadow: inset 0 0 20px rgba(10,255,10,0.1); }
+
+/* 95. AI Chat UI */
+.ai-chat-ui { display: flex; flex-direction: column; height: 400px; border: 1px solid var(--neon-blue); border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.3); }
+.chat-messages { flex: 1; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+.chat-bubble { max-width: 80%; padding: 0.8rem 1rem; border-radius: 12px; font-size: 0.9rem; }
+.chat-bubble.bot { background: rgba(0,243,255,0.1); border: 1px solid rgba(0,243,255,0.3); align-self: flex-start; border-bottom-left-radius: 2px; }
+.chat-bubble.user { background: rgba(255,0,255,0.1); border: 1px solid rgba(255,0,255,0.3); align-self: flex-end; border-bottom-right-radius: 2px; }
+.chat-input-area { display: flex; border-top: 1px solid var(--neon-blue); background: rgba(0,0,0,0.5); }
+.chat-input-area input { flex: 1; background: transparent; border: none; color: white; padding: 1rem; outline: none; }
+
+/* 96. Cyber Radar */
+.cyber-radar { width: 200px; height: 200px; border-radius: 50%; border: 2px solid var(--neon-green); position: relative; background: radial-gradient(circle, rgba(10,255,10,0.2) 0%, transparent 70%); display: flex; align-items: center; justify-content: center; }
+.cyber-radar::before { content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 1px dashed rgba(10,255,10,0.3); }
+.cyber-radar::after { content: ''; position: absolute; top: 50%; left: 50%; width: 50%; height: 2px; background: linear-gradient(90deg, var(--neon-green), transparent); transform-origin: 0 0; animation: radar-spin 2s linear infinite; }
+@keyframes radar-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* 97. Circular Progress UI */
+.circular-progress { width: 100px; height: 100px; border-radius: 50%; background: conic-gradient(var(--neon-blue) 0% 75%, rgba(255,255,255,0.1) 75% 100%); display: flex; align-items: center; justify-content: center; position: relative; }
+.circular-progress::before { content: ''; position: absolute; width: 80px; height: 80px; background: var(--bg-dark); border-radius: 50%; }
+.circular-progress span { position: relative; z-index: 1; font-weight: bold; color: var(--neon-blue); }
+
+/* 98. Neon Data Visualization */
+.neon-chart { display: flex; align-items: flex-end; gap: 8px; height: 120px; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px solid #333; }
+.neon-bar { width: 20px; background: var(--neon-pink); box-shadow: 0 0 10px var(--neon-pink); border-radius: 2px 2px 0 0; animation: pulse-bar 1s infinite alternate; }
+.neon-bar:nth-child(2) { animation-delay: 0.2s; height: 60%; }
+.neon-bar:nth-child(3) { animation-delay: 0.4s; height: 80%; }
+@keyframes pulse-bar { from { opacity: 0.6; box-shadow: 0 0 5px var(--neon-pink); } to { opacity: 1; box-shadow: 0 0 15px var(--neon-pink); } }
+
+/* 99. Interactive Tool Cards */
+.tool-card { background: var(--bg-panel); border: 1px solid #333; padding: 1.5rem; border-radius: 8px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer; position: relative; overflow: hidden; }
+.tool-card:hover { border-color: var(--neon-blue); box-shadow: 0 0 25px rgba(0,243,255,0.2); transform: translateY(-8px); }
+.tool-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transition: 0.5s; }
+.tool-card:hover::before { left: 100%; }
+
+/* 100. Responsive Cyber Layout */
+.responsive-cyber-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 1rem; width: 100%; }
+@media (max-width: 768px) { .responsive-cyber-layout { grid-template-columns: 1fr; } }
+
+/* Base Reset & Utilities */
+body { margin: 0; font-family: 'Courier New', monospace; background: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+* { box-sizing: border-box; }
