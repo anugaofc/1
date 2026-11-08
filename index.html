@@ -1,100 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CyberVault | Premium Serverless Cyber Lab</title>
-  <meta name="description" content="CyberVault by Anuga Senithu: A premium, serverless cybersecurity learning lab hosted on Vercel.">
-  <link rel="stylesheet" href="style.css">
-  
-  <!-- 1000 META SEO TAGS GENERATOR (Ensures exact 1000 tags for all search engines) -->
-  <script>
-    (function() {
-      const head = document.head;
-      const keywords = ['cybersecurity', 'ethical hacking', 'CyberVault', 'Anuga Senithu', 'Vercel serverless', 'OWASP Top 10', 'SQL injection lab', 'XSS playground', 'CSRF simulator', 'SSRF learning', 'CTF challenges', 'secure code checker', 'dependency risk', 'error decoder', 'cyber quiz'];
-      for (let i = 1; i <= 1000; i++) {
-        const meta = document.createElement('meta');
-        const kw = keywords[i % keywords.length];
-        meta.name = 'cybervault-seo-keyword-' + i;
-        meta.content = 'CyberVault: Premium serverless cyber lab by Anuga Senithu. Feature: ' + kw + ' module ' + i + '. Learn, practice, and master cybersecurity safely on Vercel.';
-        head.appendChild(meta);
-      }
-    })();
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CyberVault by Anuga Senithu - Premium serverless cybersecurity lab.">
+    <meta name="author" content="Anuga Senithu">
+    <!-- 1000 Meta Tags Injection -->
+    <script>
+        const seoKeywords = ["cybersecurity", "cybervault", "ethical hacking", "web security", "penetration testing", "anuga senithu", "serverless security", "vercel cyber lab", "firebase auth", "sql injection", "xss playground", "csrf simulator", "ssrf learning", "directory traversal", "authentication lab", "owasp top 10", "cyber quiz", "ctf challenges", "error decoder", "secure code checker", "dependency risk"];
+        for (let i = 1; i <= 1000; i++) {
+            const meta = document.createElement('meta');
+            meta.name = `cybervault-seo-${i}`;
+            meta.content = `${seoKeywords[i % seoKeywords.length]} tool ${i} ethical hacking cybersecurity anuga senithu vercel serverless`;
+            document.head.appendChild(meta);
+        }
+    </script>
 
-  <!-- Firebase SDK -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
-    const firebaseConfig = {
-      apiKey: "AIzaSyDWnIQ3KTx9S9GXmdpNQ_T_A4k-lOt9ELU",
-      authDomain: "anuga-senithu-c35d6.firebaseapp.com",
-      projectId: "anuga-senithu-c35d6",
-      storageBucket: "anuga-senithu-c35d6.firebasestorage.app",
-      messagingSenderId: "341272383565",
-      appId: "1:341272383565:web:47b2f1cd95887987030c04"
-    };
-    const app = initializeApp(firebaseConfig);
-    window.cyberVaultApp = app;
-  </script>
+    <title>CyberVault - Premium Serverless Cyber Lab | Anuga Senithu</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="sticky-header">
-    <nav class="neon-navbar">
-      <h1 class="animated-underline" style="color: var(--neon-blue); margin: 0;">CyberVault</h1>
-      <div>
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="dashboard.html" class="nav-link">Tools</a>
-        <a href="login.html" class="nav-link">Login</a>
-        <a href="signup.html" class="nav-link">Signup</a>
-      </div>
-    </nav>
-  </header>
+    <div id="cyber-loader">
+        <div class="loader-ring"><div></div><div></div></div>
+        <div class="loader-text">LOADING CYBERVAULT...</div>
+    </div>
 
-  <main style="padding: 2rem;">
-    <section class="cyber-hud" style="text-align: center; margin-bottom: 3rem;">
-      <h2 style="font-size: 2.5rem; text-shadow: 0 0 10px var(--neon-blue);">Welcome to CyberVault</h2>
-      <p style="font-size: 1.2rem; max-width: 800px; margin: 1rem auto;">
-        The ultimate serverless cybersecurity learning environment. Developed by <strong>Anuga Senithu</strong>. 
-        Practice ethical hacking, explore vulnerabilities, and master defensive security in a safe, simulated environment.
-      </p>
-      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-        <a href="login.html" class="neon-btn magnetic-hover ripple-btn">Access Lab</a>
-        <a href="signup.html" class="gradient-btn magnetic-hover ripple-btn">Create Account</a>
-      </div>
+    <header class="sticky-header neon-navbar">
+        <div class="container flex-center" style="justify-content: space-between; padding: 15px 20px;">
+            <h1 class="text-neon" style="font-size: 1.6rem; letter-spacing: 3px;">CYBER<span style="color:white">VAULT</span></h1>
+            <nav>
+                <a href="index.html" class="animated-underline text-neon" style="margin-right: 20px;">Home</a>
+                <a href="dashboard.html" class="animated-underline" style="margin-right: 20px;">Tools</a>
+                <a href="login.html" class="neon-btn cyber-btn" style="margin-right: 10px;">Login</a>
+                <a href="signup.html" class="gradient-btn cyber-btn">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="cyber-hud fade-in-up" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2 class="text-gradient" style="font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1;">NEXT-GEN<br>CYBER LAB</h2>
+                <p class="fade-in-up delay-1" style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    The ultimate serverless cybersecurity environment. Developed by <strong class="text-neon">Anuga Senithu</strong>. 
+                    Master 100+ premium ethical hacking tools, simulated vulnerability playgrounds, and advanced cyber learning modules.
+                </p>
+                <div class="fade-in-up delay-2" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="signup.html" class="gradient-btn cyber-btn">Initialize Account</a>
+                    <a href="dashboard.html" class="neon-btn cyber-btn">Explore Arsenal</a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section>
-      <h3 style="border-left: 4px solid var(--neon-pink); padding-left: 1rem;">Featured Tools</h3>
-      <div class="responsive-cyber-layout">
-        <div class="tool-card">
-          <h4>88. Error Decoder</h4>
-          <p>Explain complex error messages and stack traces instantly.</p>
+    <div class="section-divider"></div>
+
+    <section class="container" style="padding: 40px 20px;">
+        <h2 class="text-neon fade-in-up delay-3" style="text-align: center; margin-bottom: 50px; font-size: 2rem;">FEATURED ARSENAL</h2>
+        <div class="grid-layout">
+            <div class="interactive-tool-card fade-in-up delay-1">
+                <h3 class="text-neon" style="font-size: 1.2rem; margin-bottom: 10px;">091. SQL Injection Playground</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Safe, isolated simulated SQLi environment for mastering database security protocols.</p>
+            </div>
+            <div class="interactive-tool-card fade-in-up delay-2">
+                <h3 class="text-neon" style="font-size: 1.2rem; margin-bottom: 10px;">092. XSS Playground</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Controlled Cross-Site Scripting testing ground with real-time payload analysis.</p>
+            </div>
+            <div class="interactive-tool-card fade-in-up delay-3">
+                <h3 class="text-neon" style="font-size: 1.2rem; margin-bottom: 10px;">099. Capture-the-Flag Lab</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Progressive educational CTF challenges designed to validate and expand your cyber skills.</p>
+            </div>
+            <div class="interactive-tool-card fade-in-up delay-4">
+                <h3 class="text-neon" style="font-size: 1.2rem; margin-bottom: 10px;">088. Error Decoder</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Advanced parser to explain system error messages and identify potential security leaks.</p>
+            </div>
         </div>
-        <div class="tool-card">
-          <h4>91. SQL Injection Playground</h4>
-          <p>Safe, simulated SQLi environment for learning database security.</p>
+        <div class="fade-in-up delay-4" style="text-align: center; margin-top: 60px;">
+            <a href="dashboard.html" class="gradient-btn cyber-btn">View All 100 Tools</a>
         </div>
-        <div class="tool-card">
-          <h4>99. Capture-the-Flag Lab</h4>
-          <p>Educational CTF challenges to test your cyber skills.</p>
-        </div>
-      </div>
     </section>
-  </main>
 
-  <footer class="cyber-footer">
-    <p>&copy; 2026 CyberVault. All rights reserved.</p>
-    <p>Developer: <span>Anuga Senithu</span> | Hosted on Vercel</p>
-  </footer>
+    <footer class="cyber-footer">
+        <div class="container">
+            <h3 class="text-neon" style="margin-bottom: 15px; font-size: 1.5rem;">CYBERVAULT</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 20px; font-family: var(--font-mono); font-size: 0.85rem;">PREMIUM SERVERLESS CYBER LAB</p>
+            <p style="color: var(--text-secondary); font-size: 0.85rem;">
+                &copy; 2026 CyberVault. All rights reserved.<br>
+                Architected by <strong class="text-neon">Anuga Senithu</strong> | Hosted on Vercel | Powered by Firebase
+            </p>
+        </div>
+    </footer>
 
-  <script>
-    // Mobile command palette trigger (Ctrl+K)
-    document.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        alert('Command Palette Activated (Design #74)');
-      }
-    });
-  </script>
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('cyber-loader').classList.add('hidden');
+            }, 800);
+        });
+    </script>
 </body>
 </html>
