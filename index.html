@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberVault | Premium Serverless Cyber Lab</title>
+  <meta name="description" content="CyberVault by Anuga Senithu: A premium, serverless cybersecurity learning lab hosted on Vercel.">
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- 1000 META SEO TAGS GENERATOR (Ensures exact 1000 tags for all search engines) -->
+  <script>
+    (function() {
+      const head = document.head;
+      const keywords = ['cybersecurity', 'ethical hacking', 'CyberVault', 'Anuga Senithu', 'Vercel serverless', 'OWASP Top 10', 'SQL injection lab', 'XSS playground', 'CSRF simulator', 'SSRF learning', 'CTF challenges', 'secure code checker', 'dependency risk', 'error decoder', 'cyber quiz'];
+      for (let i = 1; i <= 1000; i++) {
+        const meta = document.createElement('meta');
+        const kw = keywords[i % keywords.length];
+        meta.name = 'cybervault-seo-keyword-' + i;
+        meta.content = 'CyberVault: Premium serverless cyber lab by Anuga Senithu. Feature: ' + kw + ' module ' + i + '. Learn, practice, and master cybersecurity safely on Vercel.';
+        head.appendChild(meta);
+      }
+    })();
+  </script>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyDWnIQ3KTx9S9GXmdpNQ_T_A4k-lOt9ELU",
+      authDomain: "anuga-senithu-c35d6.firebaseapp.com",
+      projectId: "anuga-senithu-c35d6",
+      storageBucket: "anuga-senithu-c35d6.firebasestorage.app",
+      messagingSenderId: "341272383565",
+      appId: "1:341272383565:web:47b2f1cd95887987030c04"
+    };
+    const app = initializeApp(firebaseConfig);
+    window.cyberVaultApp = app;
+  </script>
+</head>
+<body>
+  <header class="sticky-header">
+    <nav class="neon-navbar">
+      <h1 class="animated-underline" style="color: var(--neon-blue); margin: 0;">CyberVault</h1>
+      <div>
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="dashboard.html" class="nav-link">Tools</a>
+        <a href="login.html" class="nav-link">Login</a>
+        <a href="signup.html" class="nav-link">Signup</a>
+      </div>
+    </nav>
+  </header>
+
+  <main style="padding: 2rem;">
+    <section class="cyber-hud" style="text-align: center; margin-bottom: 3rem;">
+      <h2 style="font-size: 2.5rem; text-shadow: 0 0 10px var(--neon-blue);">Welcome to CyberVault</h2>
+      <p style="font-size: 1.2rem; max-width: 800px; margin: 1rem auto;">
+        The ultimate serverless cybersecurity learning environment. Developed by <strong>Anuga Senithu</strong>. 
+        Practice ethical hacking, explore vulnerabilities, and master defensive security in a safe, simulated environment.
+      </p>
+      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+        <a href="login.html" class="neon-btn magnetic-hover ripple-btn">Access Lab</a>
+        <a href="signup.html" class="gradient-btn magnetic-hover ripple-btn">Create Account</a>
+      </div>
+    </section>
+
+    <section>
+      <h3 style="border-left: 4px solid var(--neon-pink); padding-left: 1rem;">Featured Tools</h3>
+      <div class="responsive-cyber-layout">
+        <div class="tool-card">
+          <h4>88. Error Decoder</h4>
+          <p>Explain complex error messages and stack traces instantly.</p>
+        </div>
+        <div class="tool-card">
+          <h4>91. SQL Injection Playground</h4>
+          <p>Safe, simulated SQLi environment for learning database security.</p>
+        </div>
+        <div class="tool-card">
+          <h4>99. Capture-the-Flag Lab</h4>
+          <p>Educational CTF challenges to test your cyber skills.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cyber-footer">
+    <p>&copy; 2026 CyberVault. All rights reserved.</p>
+    <p>Developer: <span>Anuga Senithu</span> | Hosted on Vercel</p>
+  </footer>
+
+  <script>
+    // Mobile command palette trigger (Ctrl+K)
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        alert('Command Palette Activated (Design #74)');
+      }
+    });
+  </script>
+</body>
+</html>
