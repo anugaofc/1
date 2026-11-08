@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tool | CyberVault</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function() {
+      const head = document.head;
+      for (let i = 1; i <= 1000; i++) {
+        const meta = document.createElement('meta');
+        meta.name = 'cybervault-tool-instance-seo-' + i;
+        meta.content = 'CyberVault interactive cybersecurity tool. Safe, educational, and serverless. Developed by Anuga Senithu.';
+        head.appendChild(meta);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="sticky-header">
+    <nav class="neon-navbar">
+      <h1 style="color: var(--neon-blue); margin: 0;"><a href="dashboard.html" style="color: inherit; text-decoration: none;">&larr; CyberVault</a></h1>
+    </nav>
+  </header>
+
+  <main style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+    <div class="cyber-hud">
+      <h2 id="toolTitle" style="color: var(--neon-green);">Loading Tool...</h2>
+      <p id="toolDesc">Initializing secure environment...</p>
+    </div>
+
+    <div class="dashboard-3d" style="margin-top: 2rem;">
+      <div class="dashboard-panel">
+        <h3>Terminal Output</h3>
+        <div class="terminal-ui" style="min-height: 200px; margin-top: 1rem;">
+          <span style="color: var(--neon-green);">root@cybervault:~$</span> <span id="terminalInput" class="terminal-input" contenteditable="true" style="display:inline-block; width:80%; border:none; background:transparent;"></span>
+          <div id="terminalOutput" style="margin-top: 1rem; color: #ccc;"></div>
+        </div>
+        
+        <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+          <button class="btn-3d" onclick="document.getElementById('terminalOutput').innerHTML += '<br>> Executing secure simulation...<br>> No real vulnerabilities exploited.'">Execute Simulation</button>
+          <button class="neon-btn">Reset Environment</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="cyber-footer">
+    <p>Developer: <span>Anuga Senithu</span> | CyberVault Secure Tool Instance</p>
+  </footer>
+
+  <script type="module">
+    import { getAuth } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+    const auth = getAuth(window.cyberVaultApp);
+    
+    auth.onAuthStateChanged(user => {
+      if (!user) window.location.href = 'login.html';
+    });
+
+    // Parse tool ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const toolId = params.get('id') || 'Unknown';
+    document.getElementById('toolTitle').innerText = `Tool Module #${toolId}`;
+  </script>
+</body>
+</html>
