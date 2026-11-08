@@ -1,95 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - CyberVault</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div id="cyber-loader">
-        <div class="loader-ring"><div></div><div></div></div>
-        <div class="loader-text">ESTABLISHING SECURE SESSION...</div>
-    </div>
+// =========================================
+// CyberVault - Dashboard Logic
+// Developer: Anuga Senithu
+// =========================================
 
-    <div class="responsive-cyber-layout">
-        <aside class="vertical-nav">
-            <h2 class="text-neon" style="margin-bottom: 40px; font-size: 1.4rem; letter-spacing: 2px;">CYBERVAULT</h2>
-            <nav style="display: flex; flex-direction: column; gap: 8px;">
-                <a href="dashboard.html" class="active-nav-glow" style="padding: 12px 16px; border-radius: 6px; color: white; text-decoration: none; display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 0.9rem;">
-                    <span>◈</span> Dashboard
-                </a>
-                <a href="#" class="animated-underline" style="padding: 12px 16px; border-radius: 6px; color: var(--text-secondary); text-decoration: none; display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 0.9rem;">
-                    <span>◈</span> All Tools
-                </a>
-                <a href="#" class="animated-underline" style="padding: 12px 16px; border-radius: 6px; color: var(--text-secondary); text-decoration: none; display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 0.9rem;">
-                    <span>◈</span> Learning Labs
-                </a>
-                <a href="#" class="animated-underline" style="padding: 12px 16px; border-radius: 6px; color: var(--text-secondary); text-decoration: none; display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 0.9rem;">
-                    <span>◈</span> Settings
-                </a>
-                <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                    <button id="logoutBtn" class="neon-btn cyber-btn" style="width: 100%; font-size: 0.8rem;">Terminate Session</button>
-                </div>
-            </nav>
-        </aside>
+import { auth, signOut, onAuthStateChanged, showToast } from './app.js';
 
-        <main style="padding: 30px; min-height: 100vh;">
-            <header class="sticky-header" style="position: sticky; top: 0; z-index: 100; background: rgba(5, 5, 8, 0.9); padding: 20px; border-radius: 8px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.05);">
-                <h2 class="text-gradient" style="font-size: 1.5rem;">Command Center</h2>
-                <input type="text" id="toolSearch" class="search-input-glow" placeholder="Search arsenal..." style="max-width: 300px;">
-            </header>
+// 1. Authentication State Check
+// Redirects to login if the user is not authenticated
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        window.location.href = 'login.html';
+    } else {
+        console.log('Secure session established for:', user.email);
+    }
+});
 
-            <div class="dashboard-3d" style="margin-bottom: 40px;">
-                <div class="grid-layout" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                    <div class="dashboard-panel stats-card">
-                        <div class="number" style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 900; color: var(--neon-blue);">100</div>
-                        <div style="color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.85rem; margin-top: 5px;">TOTAL TOOLS</div>
-                    </div>
-                    <div class="dashboard-panel stats-card">
-                        <div class="number" style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 900; color: var(--neon-green);">ONLINE</div>
-                        <div style="color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.85rem; margin-top: 5px;">SERVERLESS STATUS</div>
-                    </div>
-                    <div class="dashboard-panel stats-card">
-                        <div class="number" style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 900; color: var(--neon-purple);">A+</div>
-                        <div style="color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.85rem; margin-top: 5px;">SECURITY GRADE</div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="toolsGrid" class="grid-layout"></div>
-        </main>
-
-        <aside style="padding: 30px 20px; border-left: 1px solid rgba(255,255,255,0.05); display: none;" id="rightSidebar">
-            <div style="text-align: center; margin-bottom: 40px;">
-                <h4 class="text-neon" style="margin-bottom: 20px; font-family: var(--font-mono); font-size: 0.9rem;">SYSTEM RADAR</h4>
-                <div class="cyber-radar" style="width: 180px; height: 180px; border-radius: 50%; border: 2px solid var(--neon-green); position: relative; background: radial-gradient(circle, rgba(10,255,0,0.1) 0%, transparent 70%); overflow: hidden; margin: 0 auto;">
-                    <div style="position: absolute; top: 50%; left: 50%; width: 50%; height: 2px; background: var(--neon-green); transform-origin: 0 0; animation: spin 2s infinite linear; box-shadow: 0 0 10px var(--neon-green);"></div>
-                </div>
-            </div>
-        </aside>
-    </div>
-
-    <div id="notificationToast" class="notification-toast">
-        <span id="toastMessage">Operation successful</span>
-    </div>
-
-    <footer class="cyber-footer" style="margin-top: 0; border-top: 1px solid rgba(255,255,255,0.05);">
-        <div class="container">
-            <p style="color: var(--text-secondary); font-size: 0.8rem; font-family: var(--font-mono);">
-                &copy; 2026 CYBERVAULT. DEVELOPED BY <strong class="text-neon">ANUGA SENITHU</strong> | HOSTED ON VERCEL
-            </p>
-        </div>
-    </footer>
-
-    <script>
-        window.addEventListener('load', () => {
+// 2. Logout Handler
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+        try {
+            showToast('Terminating secure session...');
+            await signOut(auth);
             setTimeout(() => {
-                document.getElementById('cyber-loader').classList.add('hidden');
-            }, 800);
-        });
-    </script>
-    <script src="tools.js"></script>
-    <script type="module" src="dashboard.js"></script>
-</body>
-</html>
+                window.location.href = 'index.html';
+            }, 1000);
+        } catch (error) {
+            showToast(error.message, true);
+        }
+    });
+}
+
+// 3. Tool Rendering Logic
+const toolsGrid = document.getElementById('toolsGrid');
+const toolSearch = document.getElementById('toolSearch');
+
+function renderTools(filterText = '') {
+    if (!toolsGrid) return;
+    
+    // Add a subtle fade effect during search for smooth UX
+    toolsGrid.style.opacity = '0.5';
+    
+    setTimeout(() => {
+        toolsGrid.innerHTML = '';
+        
+        // Filter tools by name, description, or ID
+        const filteredTools = tools.filter(tool => 
+            tool.name.toLowerCase().includes(filterText.toLowerCase()) ||
+            tool.description.toLowerCase().includes(filterText.toLowerCase()) ||
+            tool.id.toString().includes(filterText)
+        );
+
+        if (filteredTools.length === 0) {
+            toolsGrid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
+                    <h3 class="text-neon" style="margin-bottom: 10px; font-family: var(--font-display);">No Tools Found</h3>
+                    <p style="color: var(--text-secondary); font-family: var(--font-mono);">Try adjusting your search parameters.</p>
+                </div>
+            `;
+        } else {
+            filteredTools.forEach((tool, index) => {
+                const card = document.createElement('div');
+                card.className = 'interactive-tool-card fade-in-up';
+                
+                // Staggered animation delay for a cascading reveal effect
+                card.style.animationDelay = `${index * 0.03}s`; 
+                
+                // Format ID to be 3 digits (e.g., 001, 088, 091)
+                const formattedId = tool.id.toString().padStart(3, '0');
+                
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                        <h3 class="text-neon" style="font-size: 1.05rem; font-family: var(--font-mono); font-weight: 700;">
+                            <span style="color: var(--neon-purple); margin-right: 8px;">#${formattedId}</span>
+                            ${tool.name}
+                        </h3>
+                        <span style="background: rgba(0, 243, 255, 0.1); color: var(--neon-blue); padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; border: 1px solid rgba(0, 243, 255, 0.3); font-family: var(--font-mono); letter-spacing: 1px;">
+                            ${tool.category.toUpperCase()}
+                        </span>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px;">
+                        ${tool.description}
+                    </p>
+                    <button class="neon-btn cyber-btn" style="width: 100%; font-size: 0.8rem; padding: 10px; font-family: var(--font-mono);" data-tool="${tool.name}">
+                        INITIALIZE TOOL
+                    </button>
+                `;
+                
+                // Add click event to simulate tool launch
+                const btn = card.querySelector('button');
+                btn.addEventListener('click', () => {
+                    showToast(`Initializing ${tool.name} environment...`);
+                    // Future enhancement: Add actual tool routing, e.g., window.location.href = `tools/${tool.id}.html`;
+                });
+                
+                toolsGrid.appendChild(card);
+            });
+        }
+        
+        // Restore opacity after rendering
+        toolsGrid.style.opacity = '1';
+        toolsGrid.style.transition = 'opacity 0.3s ease';
+    }, 150); // Small delay allows the fade-out to be perceived
+}
+
+// 4. Initial Render
+renderTools();
+
+// 5. Search Functionality with Debounce (Prevents lag on rapid typing)
+let searchTimeout;
+if (toolSearch) {
+    toolSearch.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            renderTools(e.target.value);
+        }, 300); // 300ms debounce
+    });
+}
+
+// 6. Responsive Sidebar Logic
+function handleResize() {
+    const rightSidebar = document.getElementById('rightSidebar');
+    if (rightSidebar) {
+        if (window.innerWidth >= 1200) {
+            rightSidebar.style.display = 'block';
+            // Add fade-in animation when it appears on large screens
+            rightSidebar.style.animation = 'fadeInUp 0.5s ease forwards';
+        } else {
+            rightSidebar.style.display = 'none';
+        }
+    }
+}
+
+window.addEventListener('resize', handleResize);
+handleResize(); // Initial check on load
