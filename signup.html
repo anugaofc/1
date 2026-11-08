@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup | CyberVault</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function() {
+      const head = document.head;
+      for (let i = 1; i <= 1000; i++) {
+        const meta = document.createElement('meta');
+        meta.name = 'cybervault-signup-seo-' + i;
+        meta.content = 'Create your secure CyberVault account. Access 100+ cybersecurity tools, CTF labs, and OWASP simulators by Anuga Senithu.';
+        head.appendChild(meta);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="sticky-header">
+    <nav class="neon-navbar">
+      <h1 style="color: var(--neon-blue); margin: 0;"><a href="index.html" style="color: inherit; text-decoration: none;">CyberVault</a></h1>
+    </nav>
+  </header>
+
+  <main style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
+    <div class="dashboard-panel" style="width: 100%; max-width: 400px;">
+      <h2 style="text-align: center; color: var(--neon-pink);">Initialize Identity</h2>
+      <form id="signupForm">
+        <div class="floating-label-group">
+          <input type="email" id="signupEmail" class="floating-input terminal-input" placeholder=" " required>
+          <label class="floating-label">Email Address</label>
+        </div>
+        <div class="floating-label-group">
+          <input type="password" id="signupPassword" class="floating-input terminal-input" placeholder=" " required>
+          <label class="floating-label">Password</label>
+        </div>
+        <button type="submit" class="gradient-btn ripple-btn" style="width: 100%; margin-bottom: 1rem;">Create Account</button>
+      </form>
+      
+      <div style="text-align: center; margin: 1rem 0; color: #666;">OR REGISTER WITH</div>
+      <button id="googleSignup" class="neon-btn" style="width: 100%; margin-bottom: 0.5rem;">Google</button>
+      <button id="microsoftSignup" class="neon-btn" style="width: 100%; margin-bottom: 0.5rem;">Microsoft</button>
+      <button id="appleSignup" class="neon-btn" style="width: 100%;">Apple</button>
+      
+      <p style="text-align: center; margin-top: 1rem;">
+        Already initialized? <a href="login.html" style="color: var(--neon-blue);">System Login</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="cyber-footer">
+    <p>Developer: <span>Anuga Senithu</span></p>
+  </footer>
+
+  <script type="module">
+    import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, OAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+    const auth = getAuth(window.cyberVaultApp);
+
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('signupEmail').value;
+      const password = document.getElementById('signupPassword').value;
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        window.location.href = 'dashboard.html';
+      } catch (error) {
+        alert('Registration Failed: ' + error.message);
+      }
+    });
+
+    const handlePopup = (provider) => {
+      signInWithPopup(auth, provider).then(() => window.location.href = 'dashboard.html').catch(e => alert(e.message));
+    };
+
+    document.getElementById('googleSignup').addEventListener('click', () => handlePopup(new GoogleAuthProvider()));
+    document.getElementById('microsoftSignup').addEventListener('click', () => handlePopup(new OAuthProvider('microsoft.com')));
+    document.getElementById('appleSignup').addEventListener('click', () => handlePopup(new OAuthProvider('apple.com')));
+  </script>
+</body>
+</html>
